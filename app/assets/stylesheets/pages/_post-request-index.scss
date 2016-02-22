@@ -1,0 +1,66 @@
+
+
+// Area buttons
+
+.area--button--section {
+  margin: 1.5rem 0;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.area--button {
+  text-align: center;
+  overflow: hidden;
+
+  .btn--teacher {
+    position: relative;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      background: rgba($primary-color,0.1);
+      height: 1px;
+      top: 50%;
+      width: 900px;
+    }
+
+    &:before {
+      left: 100%;
+      margin-left: 2rem;
+    }
+
+    &:after {
+      right: 100%;
+      margin-right: 2rem;
+    }
+
+  }
+
+  .btn--student {
+
+    position: relative;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      background: rgba($secondary-color,0.1);
+      height: 1px;
+      top: 50%;
+      width: 900px;
+    }
+
+    &:before {
+      left: 100%;
+      margin-left: 2rem;
+    }
+
+    &:after {
+      right: 100%;
+      margin-right: 2rem;
+    }
+
+  }
+
+}

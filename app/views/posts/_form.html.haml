@@ -1,0 +1,15 @@
+= simple_form_for @post do |f|
+  .form-group.select.required.input_category
+    = f.label :category_id, label: "Select a Category for this Post"
+    = f.input_field :category_id, as: :select, collection: Category.all, prompt: "Select category", required: true
+  = f.error :category_id
+  = f.input :title, placeholder: 'Example: English Teach'
+  = f.input :description, placeholder: 'Try to describe what you can do for students, minimum 20 characters'
+  = f.input :experience, placeholder: 'Briefly describe your experience, minimum 20 characters'
+  .clear
+    .col-xs-6.no--padding--left
+      = f.input :years_experience, label: 'Years of experience'
+    .col-xs-6.no--padding--right
+      = f.input :price, label: 'Price per hour'
+  .input--submit
+    = f.button :submit, class: "btn btn-primary"

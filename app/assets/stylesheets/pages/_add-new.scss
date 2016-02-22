@@ -1,0 +1,48 @@
+
+
+
+
+.add--new--link {
+  display: block;
+  background: $color-light;
+  text-align: center;
+  margin: 1.5rem 0;
+  color: $color-text;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+}
+
+.new--post {
+
+  &:hover, &:focus, &:active {
+    color: $primary-color;
+    border-color: $primary-color;
+  }
+
+}
+
+.new--request {
+
+  &:hover, &:focus, &:active {
+    color: $secondary-color;
+    border-color: $secondary-color;
+  }
+
+}
+
+.add--new--content {
+  font-size: 1.75rem;
+
+  span {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+}

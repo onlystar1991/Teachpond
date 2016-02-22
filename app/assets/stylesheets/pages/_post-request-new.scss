@@ -1,0 +1,27 @@
+
+
+.box--floated {
+
+  textarea {
+    height: 120px;
+  }
+
+}
+
+.input--submit {
+  padding: 1.5rem 0;
+  text-align: center;
+  input {
+    width: 100%;
+  }
+}
+
+.input_category {
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid $border-color;
+
+  input {
+    text-align: center;
+  }
+
+}

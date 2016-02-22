@@ -1,0 +1,39 @@
+- provide(:title, "Requests")
+
+= render 'header'
+
+.container
+  .row.content--section
+
+    .col-xs-12.col-sm-3.col-md-2
+      .filter--section
+        %h4.filter--title Top Categories
+        %ul.list--reset.filter--list
+          %li= link_to "All", requests_path
+          - @categories.each do |category|
+            %li
+              = link_to category.title.titleize.pluralize, category_requests_path(category)
+              -# %span (#{category.record_cout})
+      .filter--section
+        %h4.filter--title Types
+        = render 'shared/browse/post_types'
+
+    .col-xs-12.col-sm-9.col-md-10
+      .area--section
+        .row
+          - @requests.each do |request|
+            .col-xs-12.col-sm-6.col-md-4
+              .request--box.box
+                .request--info
+                  %p
+                    %span.info--city= request.user.profile.city
+                    %span.info--price.pull-right.dollar--sign
+                      = request.price
+                      hr
+                .request--title
+                  %h3= link_to request.title, request
+                .request--profile
+                  = gravatar_for request.user
+                  = link_to request.user.profile.name, request.user
+                  %a.request--message--icon.pull-right{ href: "#0", alt: "Message"}
+                    %i.fa.fa-envelope-o

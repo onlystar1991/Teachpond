@@ -1,0 +1,45 @@
+
+.clear:before,
+.clear:after {
+    content: "";
+    display: table;
+}
+.clear:after {
+    clear: both;
+}
+.clear {
+    zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+.no--padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.no--padding--left {
+  padding-left: 0;
+}
+
+.no--padding--right {
+  padding-right: 0;
+}
+
+.list--reset {
+  list-style: none;
+  padding-left: 0;
+}
+
+.text--muted {
+  opacity: 0.35;
+}
+
+
+.accent--color {
+  color: $primary-color;
+}
+
+.dollar--sign {
+  &:before {
+    content: '$';
+  }
+}

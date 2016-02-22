@@ -1,0 +1,76 @@
+- provide(:title, @first_name + " " + @last_name)
+
+.header--section.header--profile
+  .container.header--content
+    .row
+
+      .profile--content.clear
+        .col-xs-12.col-sm-3.col-md-2
+          .main--profile--picture
+            = gravatar_for current_user
+
+        .col-xs-12.col-sm-9.col-md-10
+          %h2.profile--name= @profile.name
+          %p.profile--country= @city + ", " + @country
+
+      .col-xs-12
+        .sub--nav
+          %ul.nav.nav-tabs
+            %li.active
+              = link_to "My profile", current_user
+            %li
+              = link_to "Edit profile", edit_user_profile_path(current_user.id, current_user.profile.id)
+            %li
+              = link_to "Account Settings", edit_user_registration_path
+
+
+.container
+  .row.content--section
+
+    .col-xs-12.col-sm-6
+      %h4 As a teacher
+
+      - if @posts.length > 0
+        - @posts.each do |post|
+
+          .col-xs-12.col-md-6.no--padding--left
+            .post--box.box
+              .post--info
+                %p
+                  %span.info--city= post.user.profile.city
+                  %span.info--price.pull-right
+                    = post.price
+                    hr
+              .post--title
+                %h3= link_to post.title, post
+              .post--profile
+                = gravatar_for post.user
+                = link_to post.user.profile.name, post.user
+                %a.post--message--icon.pull-right{ href: "#0", alt: "Message"}
+                  %i.fa.fa-envelope-o
+
+      - else
+        %p.text-muted There are no posts for this user
+
+
+    .col-xs-12.col-sm-6
+
+      %h4 As a student
+
+      - if @requests.length > 0
+        - @requests.each do |request|
+
+          .col-xs-12.col-md-6.no--padding--left
+            .request--box.box
+              .request--info
+                %p= request.user.profile.city
+              .request--title
+                %h3= link_to request.title, request
+              .request--profile
+                = gravatar_for request.user
+                = link_to request.user.profile.name, request.user
+                %a.request--message--icon.pull-right{ href: "#0", alt: "Message"}
+                  %i.fa.fa-envelope-o
+
+      - else
+        %p.text-muted There are no requests for this user

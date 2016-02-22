@@ -1,0 +1,20 @@
+%header.header--section
+  .container.header--content
+
+    %h1 Browse Teachers
+
+    - if params[:category_id]
+      = form_tag(category_posts_path, method: "get", role: "Search") do
+        .form-group.header--serach
+          = label_tag :q, "Search for:", class: "sr-only"
+          = text_field_tag :q, params[:q], class: "form-control", placeholder: "Search..."
+          %button.btn--serach{:name => "commit", :type => "submit", class: "btn--search"}
+            %i.fa.fa-search
+
+    - else
+      = form_tag(posts_path, method: "get", role: "Search") do
+        .form-group.header--serach
+          = label_tag :q, "Search for:", class: "sr-only"
+          = text_field_tag :q, params[:q], class: "form-control", placeholder: "Search..."
+          %button.btn--serach{:name => "commit", :type => "submit", class: "btn--search"}
+            %i.fa.fa-search

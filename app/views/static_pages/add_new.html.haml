@@ -1,0 +1,19 @@
+- provide(:title, "Add New")
+
+.container
+  .row.content--section
+
+    .col-xs-12
+      %h1.text-center.section--title--margin Create New Post
+      %p.text--muted.text-center Step 1 of 2
+
+    .col-xs-12.col-sm-6.col-md-4.col-md-offset-2
+      = link_to new_post_path, class: "add--new--link box new--post" do
+        %p.add--new--content
+          I want to
+          %span teach this
+    .col-xs-12.col-sm-6.col-md-4
+      = link_to new_request_path, class: "add--new--link box new--request" do
+        %p.add--new--content
+          I want to
+          %span learn this

@@ -1,0 +1,42 @@
+- provide(:title, "Edit Profile")
+
+.header--section.header--profile
+  .container.header--content
+    .row
+
+      .profile--content.clear
+        .col-xs-12.col-sm-3.col-md-2
+          .main--profile--picture
+            = image_tag(@profile.avatar.url, class: 'gravatar')
+
+        .col-xs-12.col-sm-9.col-md-10
+          %h2.profile--name= @profile.name
+          %p.profile--country
+            = current_user.profile.city
+            ,
+            = current_user.profile.country
+
+      .col-xs-12
+        .sub--nav
+          %ul.nav.nav-tabs
+            %li
+              = link_to "My profile", current_user
+            %li.active
+              = link_to "Edit profile", edit_user_profile_path(current_user.id, current_user.profile.id)
+            %li
+              = link_to "Account Settings", edit_user_registration_path
+
+.container
+  .row.content--section
+    .col-xs-12.col-sm-8.col-md-5
+      %p Please fill in your profile before you start adding any teaching posts and studying reqeusts to avoid any future problems.
+      = simple_form_for @profile, url: user_profile_path do |f|
+        = f.input :first_name
+        = f.input :last_name
+        = f.input :city
+        = f.input :country
+        .avatar_class
+          = image_tag(@profile.avatar.url, title: 'Click here to change your avatar.')
+        = f.file_field :avatar
+        %br/
+        = f.button :submit

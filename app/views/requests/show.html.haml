@@ -1,0 +1,49 @@
+- provide(:title, @request.title)
+
+.header--section
+  .container.header--content
+    .row
+      .col-xs-12
+        %h1= @request.title
+      .col-xs-12
+        - if @request.user == current_user
+          = link_to "Edit", edit_request_path(@request), class: "btn btn-default"
+          = link_to "Destroy", request_path(@request), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-danger"
+      .header--info
+        .col-xs-12.col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3
+          .col-xs-4.info--box
+            %h5 Location
+            %p
+              = @request.user.profile.city
+
+          .col-xs-4.info--box
+            %h5 Category
+            %p
+              = @request.category.title.titleize.pluralize
+
+          .col-xs-4.info--box
+            %h5 Prefered Price
+            %p.dollar--sign
+              = @request.price
+              per hr
+
+
+.container
+  .row
+    .col-xs-12.col-md-10.col-md-offset-1
+      .box.box--floated.clear
+        .box--main.col-xs-12.col-sm-8
+          .main--content
+            %h4 Description
+            %p= @request.description
+
+        .box--sidebar.col-xs-12.col-sm-4
+          .sidebar--content
+            .sidebar--profile
+              .profile--picture
+                = gravatar_for @request.user
+              .profile--data
+                = link_to @request.user.profile.name, user_path(@request.user), class: "data--author--link"
+                %p.data--email= @request.user.email
+                %a.btn.btn-info.data--button.message--icon{ href: "#0", alt: "Message"}
+                  %i.fa.fa-envelope-o

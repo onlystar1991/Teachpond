@@ -1,0 +1,7 @@
+- provide(:title, @profile.name)
+
+.container
+
+  = gravatar_for current_user
+  %h1= @profile.name
+  %p= @profile.city + ", " + @profile.country
