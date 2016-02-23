@@ -4,7 +4,6 @@ class RequestsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-
     if params[:category_id] && params[:q]
       search_term = params[:q]
       requests = Category.find(params[:category_id]).requests
@@ -17,7 +16,6 @@ class RequestsController < ApplicationController
     else
       @requests = Request.all
     end
-
   end
 
   def show
@@ -35,7 +33,6 @@ class RequestsController < ApplicationController
     else
       render 'new'
     end
-
   end
 
   def edit
