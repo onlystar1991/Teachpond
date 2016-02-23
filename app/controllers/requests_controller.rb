@@ -23,11 +23,9 @@ class RequestsController < ApplicationController
   def show
   end
 
-
   def new
     @request = current_user.requests.build
   end
-
 
   def create
     @request = current_user.requests.build(request_params)
@@ -40,10 +38,8 @@ class RequestsController < ApplicationController
 
   end
 
-
   def edit
   end
-
 
   def update
     if @request.update(request_params)
@@ -53,12 +49,10 @@ class RequestsController < ApplicationController
     end
   end
 
-
   def destroy
     @request.destroy
     redirect_to root_path
   end
-
 
   private
 

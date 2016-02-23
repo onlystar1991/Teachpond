@@ -2,6 +2,6 @@
 
 .container
 
-  = gravatar_for current_user
+  = image_tag(@profile.avatar.url, class: 'gravatar')
   %h1= @profile.name
   %p= @profile.city + ", " + @profile.country

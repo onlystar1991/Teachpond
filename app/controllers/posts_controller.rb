@@ -33,8 +33,8 @@ class PostsController < ApplicationController
 
     if @post.save
       redirect_to @post, notice: "Successfuly create new Post"
-    else
-      render 'new'
+    elsee
+      render 'nw'
     end
 
   end
