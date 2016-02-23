@@ -11,5 +11,8 @@
       = f.input :years_experience, label: 'Years of experience'
     .col-xs-6.no--padding--right
       = f.input :price, label: 'Price per hour'
+  .post_image_class
+    = image_tag(@post.image.url, title: 'Click here to change post image.')
+  = f.file_field :image
   .input--submit
     = f.button :submit, class: "btn btn-primary"

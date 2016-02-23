@@ -42,12 +42,14 @@
             %p
               = @post.years_experience
               years
+            .post_image
+              = image_tag(@post.image.url)
 
         .box--sidebar.col-xs-12.col-sm-4
           .sidebar--content
             .sidebar--profile
               .profile--picture
-                = gravatar_for @post.user
+                = image_tag(@post.user.profile.avatar.url, class: 'gravatar')
               .profile--data
                 = link_to @post.user.profile.name, user_path(@post.user), class: "data--author--link"
                 %p.data--email= @post.user.email

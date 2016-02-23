@@ -31,8 +31,8 @@
 
         - if user_signed_in?
           %ul.nav.navbar-nav.navbar-right
-            %li= link_to "Teach Something", browse_path
-            %li.accent--color= link_to "Learn Something", add_new_path
+            %li= link_to "Teach Something", new_post_path
+            %li= link_to "Learn Something", new_request_path
             %li.dropdown
               %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                 My Account
@@ -47,8 +47,8 @@
 
         -else
           %ul.nav.navbar-nav.navbar-right
-            %li= link_to "Teach Something", browse_path
-            %li= link_to "Learn Something", "#"
+            %li= link_to "Teach Something", new_post_path
+            %li= link_to "Learn Something", new_request_path
             %li= link_to "Sign Up", new_user_registration_path
             %li= link_to "Sign In", new_user_session_path
 

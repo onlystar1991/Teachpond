@@ -88,11 +88,19 @@
   }
 
 }
-.avatar_class img{
-  border: 1px solid black;
+.avatar_class img, .post_image_class img {
+  border: 1px solid gray;
   border-radius: 10px;
 }
 
 #profile_avatar {
   display: none;
+}
+
+#post_image {
+  display: none;
+}
+.post_image img {
+  border: 1px solid gray;
+  border-radius: 5px;
 }

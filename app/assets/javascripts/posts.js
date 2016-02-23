@@ -1,5 +1,5 @@
 $(function() {
-	$('#profile_avatar').on('change', function(event) {
+	$('#post_image').on('change', function(event) {
 		var files = event.target.files;
 		var image = files[0];
 		var reader = new FileReader();
@@ -7,13 +7,13 @@ $(function() {
 			var img = new Image();
 			console.log(file);
 			img.src = file.target.result;
-			$('.avatar_class').html(img);
-			console.log(img);
+			$('.post_image_class').html(img);
 		}
 		reader.readAsDataURL(image);
 		console.log(files);
 	});
-	$('form').on('click', '.avatar_class img', function(e) {
-		$('#profile_avatar').click();
-	})
+
+	$('form').on('click', '.post_image_class img', function(e) {
+		$('#post_image').click();
+	});
 })

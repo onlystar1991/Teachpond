@@ -4,7 +4,6 @@
 
 .container
   .row.content--section
-
     .col-xs-12.col-sm-3.col-md-2
       .filter--section
         %h4.filter--title Top Categories
@@ -33,7 +32,7 @@
                 .post--title
                   %h3= link_to post.title, post
                 .post--profile
-                  = gravatar_for post.user
+                  = image_tag(post.user.profile.avatar.url, class: 'gravatar')
                   = link_to post.user.profile.name, post.user
                   %a.post--message--icon.pull-right{ href: "#0", alt: "Message"}
                     %i.fa.fa-envelope-o

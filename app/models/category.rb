@@ -6,5 +6,4 @@ class Category < ActiveRecord::Base
   def record_count
     self.requests.length + self.posts.length
   end
-
 end
