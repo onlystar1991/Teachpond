@@ -12,7 +12,7 @@
         = f.input :city
         = f.input :country
         .avatar_class
-          = image_tag(@profile.avatar.url, title: 'Click here to change your avatar.')
+          = gravatar_for @profile
         = f.file_field :avatar
         %br/
         = f.button :submit

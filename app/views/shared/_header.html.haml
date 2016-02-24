@@ -5,8 +5,8 @@
       .profile--content.clear
         .col-xs-12.col-sm-3.col-md-2
           .main--profile--picture
-            = image_tag(current_user.profile.avatar.url, class: 'gravatar')
-
+            = gravatar_for current_user.profile
+            
         .col-xs-12.col-sm-9.col-md-10
           %h2.profile--name= current_user.profile.name
           %p.profile--country

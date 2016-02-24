@@ -20,7 +20,8 @@ class BrowseController < ApplicationController
     end
 
     @categories = Category.all
-
+    puts "----------------"
+    puts @categories.inspect
   end
 
 end

@@ -49,7 +49,7 @@
           .sidebar--content
             .sidebar--profile
               .profile--picture
-                = image_tag(@post.user.profile.avatar.url, class: 'gravatar')
+                = gravatar_for @post.user.profile
               .profile--data
                 = link_to @post.user.profile.name, user_path(@post.user), class: "data--author--link"
                 %p.data--email= @post.user.email

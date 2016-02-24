@@ -14,8 +14,13 @@
             %span.pull-right (#{@posts.length + @requests.length})
           - @categories.each do |category|
             %li
-              = link_to category.title.titleize.pluralize, category_browse_index_path(category)
+              - if category.record_count > 1
+                = link_to category.title.titleize.pluralize, category_browse_index_path(category)
+              - else 
+                = link_to category.title.titleize, category_browse_index_path(category)
+
               %span.pull-right (#{category.record_count})
+
       .filter--section
         %h4.filter--title Types
         = render 'shared/browse/post_types'
@@ -41,7 +46,7 @@
                 .post--title
                   %h3= link_to post.title, post
                 .post--profile
-                  = gravatar_for post.user
+                  = gravatar_for post.user.profile
                   = link_to post.user.profile.name, post.user
                   %a.post--message--icon.pull-right{ href: "#0", alt: "Message"}
                     %i.fa.fa-envelope-o
@@ -64,7 +69,7 @@
                 .request--title
                   %h3= link_to request.title, request
                 .request--profile
-                  = gravatar_for request.user
+                  = gravatar_for request.user.profile
                   = link_to request.user.profile.name, request.user
                   %a.request--message--icon.pull-right{ href: "#0", alt: "Message"}
                     %i.fa.fa-envelope-o

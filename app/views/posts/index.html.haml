@@ -11,8 +11,12 @@
           %li= link_to "All", posts_path
           - @categories.each do |category|
             %li
-              = link_to category.title.titleize.pluralize, category_posts_path(category)
-              -# %span (#{category.record_cout})
+              - if category.posts.count > 1
+                = link_to category.title.titleize.pluralize, category_posts_path(category)
+              - else 
+                = link_to category.title.titleize, category_posts_path(category)
+                
+              %span.pull-right (#{category.posts.count})
       .filter--section
         %h4.filter--title Types
         = render 'shared/browse/post_types'
@@ -32,7 +36,7 @@
                 .post--title
                   %h3= link_to post.title, post
                 .post--profile
-                  = image_tag(post.user.profile.avatar.url, class: 'gravatar')
+                  = gravatar_for post.user.profile
                   = link_to post.user.profile.name, post.user
                   %a.post--message--icon.pull-right{ href: "#0", alt: "Message"}
                     %i.fa.fa-envelope-o

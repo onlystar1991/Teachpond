@@ -10,7 +10,6 @@
 
       - if @posts.length > 0
         - @posts.each do |post|
-
           .col-xs-12.col-md-6.no--padding--left
             .post--box.box
               .post--info
@@ -22,7 +21,7 @@
               .post--title
                 %h3= link_to post.title, post
               .post--profile
-                = gravatar_for post.user
+                = gravatar_for post.user.profile
                 = link_to post.user.profile.name, post.user
                 %a.post--message--icon.pull-right{ href: "#0", alt: "Message"}
                   %i.fa.fa-envelope-o
@@ -45,7 +44,7 @@
               .request--title
                 %h3= link_to request.title, request
               .request--profile
-                = gravatar_for request.user
+                = gravatar_for request.user.profile
                 = link_to request.user.profile.name, request.user
                 %a.request--message--icon.pull-right{ href: "#0", alt: "Message"}
                   %i.fa.fa-envelope-o

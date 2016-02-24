@@ -41,7 +41,7 @@
           .sidebar--content
             .sidebar--profile
               .profile--picture
-                = gravatar_for @request.user
+                = gravatar_for @request.user.profile
               .profile--data
                 = link_to @request.user.profile.name, user_path(@request.user), class: "data--author--link"
                 %p.data--email= @request.user.email

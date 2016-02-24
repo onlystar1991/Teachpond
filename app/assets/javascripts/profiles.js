@@ -13,6 +13,7 @@ $(function() {
 		reader.readAsDataURL(image);
 		console.log(files);
 	});
+	
 	$('form').on('click', '.avatar_class img', function(e) {
 		$('#profile_avatar').click();
 	})

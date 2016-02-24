@@ -12,8 +12,13 @@
           %li= link_to "All", requests_path
           - @categories.each do |category|
             %li
-              = link_to category.title.titleize.pluralize, category_requests_path(category)
-              -# %span (#{category.record_cout})
+              - if category.requests.count > 1
+                = link_to category.title.titleize.pluralize, category_requests_path(category)
+              - else 
+                = link_to category.title.titleize, category_requests_path(category)
+
+              %span.pull-right (#{category.requests.count})
+
       .filter--section
         %h4.filter--title Types
         = render 'shared/browse/post_types'
@@ -33,7 +38,7 @@
                 .request--title
                   %h3= link_to request.title, request
                 .request--profile
-                  = gravatar_for request.user
+                  = gravatar_for request.user.profile
                   = link_to request.user.profile.name, request.user
                   %a.request--message--icon.pull-right{ href: "#0", alt: "Message"}
                     %i.fa.fa-envelope-o
