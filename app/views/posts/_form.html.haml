@@ -6,13 +6,21 @@
   = f.input :title, placeholder: 'Example: English Teach'
   = f.input :description, placeholder: 'Try to describe what you can do for students, minimum 20 characters'
   = f.input :experience, placeholder: 'Briefly describe your experience, minimum 20 characters'
-  - if @post.location_id > 6
-    = f.input :location_id, as: :select, collection: @normal_locations.map{|location| [location.city, location.id]}, prompt: "Select Location", required: true, selected: 7
-  - else
+  - if @post.location_id.nil?
     = f.input :location_id, as: :select, collection: @normal_locations.map{|location| [location.city, location.id]}, prompt: "Select Location", required: true
+  - else 
+    -if @post.location_id > 6
+      = f.input :location_id, as: :select, collection: @normal_locations.map{|location| [location.city, location.id]}, prompt: "Select Location", required: true, selected: 7
+    - else
+      = f.input :location_id, as: :select, collection: @normal_locations.map{|location| [location.city, location.id]}, prompt: "Select Location", required: true
 
-  .form-group.string.optional.post_location
-    %input#post_location.form-control{:name => 'location', :placeholder => "Please input city", :type => "text", :value => @post.location.city}
+  - if @post.location_id.nil?
+    .form-group.string.optional.post_location
+      %input#post_location.form-control{:name => 'location', :placeholder => "Please input city", :type => "text"}
+  - else
+    .form-group.string.optional.post_location
+      %input#post_location.form-control{:name => 'location', :placeholder => "Please input city", :type => "text", :value => @post.location.city}
+
   .clear
     .col-xs-6.no--padding--left
       = f.input :years_experience, label: 'Years of experience'
