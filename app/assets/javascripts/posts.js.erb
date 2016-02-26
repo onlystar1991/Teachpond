@@ -1,0 +1,54 @@
+$(function() {
+	$('#post_image').on('change', function(event) {
+		var files = event.target.files;
+		var image = files[0];
+		var reader = new FileReader();
+		reader.onload = function(file) {
+			var img = new Image();
+			console.log(file);
+			img.src = file.target.result;
+			$('.post_image_class').html(img);
+		}
+		reader.readAsDataURL(image);
+		console.log(files);
+	});
+
+	$("#post_location").hide();
+	
+	$('form').on('click', '.post_image_class img', function(e) {
+		$('#post_image').click();
+	});
+
+	if ($("#post_location_id").val() < 7) {
+		$("#post_location").hide();
+	} else {
+		$("#post_location").show();
+	}
+
+	$("#post_location_id").on('change', function(event) {
+		
+		console.log($(this).val());
+		if ($(this).val() == 7) {
+			$("#post_location").show();
+		} else {
+			$("#post_location").hide();
+		}
+	})
+
+	$('input[type=submit]').click(function(event) {
+		if (($("#post_location_id").val() == 7) && ($.trim($("#post_location").val()) == "")) {
+			alert("Please input city name");
+			return false;
+		}
+	})
+	var location = [];
+	console.log(gon.additional_locations);
+	for(var object in gon.additional_locations) {
+		location.push(gon.additional_locations[object].city)
+	}
+	console.log(location);
+	
+	$("#post_location").autocomplete({
+      source: location
+    });
+})

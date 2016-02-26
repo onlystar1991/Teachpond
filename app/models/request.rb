@@ -3,6 +3,7 @@ class Request < ActiveRecord::Base
   #sql relation between tables
   belongs_to :user
   belongs_to :category
+  belongs_to :location
 
   #check validity of fields
   validates :category_id, :presence => true

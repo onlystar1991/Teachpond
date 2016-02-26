@@ -16,6 +16,21 @@ class RequestsController < ApplicationController
     else
       @requests = Request.all
     end
+
+    if params[:location_id] && params[:q]
+      search_term = params[:q]
+      requests = Location.find(params[:location_id]).requests
+      @requests = requests.where("title LIKE ?", "%#{search_term}%")
+    elsif params[:location_id]
+      @requests = Category.find(params[:location_id]).requests
+    elsif params[:q]
+      search_term = params[:q]
+      @requests = Request.where("title LIKE ?", "%#{search_term}%")
+    else
+      @requests = Request.all
+    end
+
+    @locations = Location.all
   end
 
   def show

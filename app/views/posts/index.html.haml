@@ -15,10 +15,10 @@
                 = link_to category.title.titleize.pluralize, category_posts_path(category)
               - else 
                 = link_to category.title.titleize, category_posts_path(category)
-                
+
               %span.pull-right (#{category.posts.count})
       .filter--section
-        %h4.filter--title Types
+        %h4.filter--title Filter by cities
         = render 'shared/browse/post_types'
 
     .col-xs-12.col-sm-9.col-md-10

@@ -25,6 +25,12 @@ Rails.application.routes.draw do
     resources :browse, only: [:index]
   end
 
+  resources :locations, only: [:show] do
+    resources :posts, only: [:index]
+    resources :requests, only: [:index]
+    resources :browse, only: [:index]
+  end
+  
   # Posts
   resources :posts
 

@@ -1,5 +1,10 @@
 .col-xs-12.no--padding
-  %ul.list--reset
-    %li= link_to "All", browse_path, class: "active"
-    %li= link_to "Teachers", posts_path
-    %li= link_to "Students", requests_path
+	%ul.list--reset.filter--list
+		- @locations.each do |location|
+			%li
+				= link_to location.city, location_requests_path(location)
+				%span.pull-right (#{location.requests.count})
+
+		%form{:action => "/locations/", :method => "get", :id => "location_filter"}
+			.form-group
+				%input{:name => "p", :type =>"text", :class => "form-control"}

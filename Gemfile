@@ -26,8 +26,11 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 gem 'font-awesome-rails'
 
+gem 'jquery-ui-sass-rails'
+
 gem 'puma'
 gem 'paperclip', '~>4.1'
+gem 'gon'
 
 
 

@@ -20,6 +20,7 @@ class BrowseController < ApplicationController
     end
 
     @categories = Category.all
+    @locations = Location.all
     puts "----------------"
     puts @categories.inspect
   end
