@@ -6,6 +6,20 @@
   = f.input :title, placeholder: 'Example: I want someone to teach me ...'
   = f.input :description, placeholder: 'Give a brief description of your expectations and what you are looking for...'
   = f.input :price, label: "Prefered price per hour"
+  - if @request.location_id.nil?
+    = f.input :location_id, as: :select, collection: @normal_locations.map{|location| [location.city, location.id]}, prompt: "Select Location", required: true
+  - else 
+    -if @request.location_id > 6
+      = f.input :location_id, as: :select, collection: @normal_locations.map{|location| [location.city, location.id]}, prompt: "Select Location", required: true, selected: 7
+    - else
+      = f.input :location_id, as: :select, collection: @normal_locations.map{|location| [location.city, location.id]}, prompt: "Select Location", required: true
+
+  - if @request.location_id.nil?
+    .form-group.string.optional.post_location
+      %input#request_location.form-control{:name => 'location', :placeholder => "Please input city", :type => "text"}
+  - else
+    .form-group.string.optional.post_location
+      %input#post_location.form-control{:name => 'location', :placeholder => "Please input city", :type => "text", :value => @request.location.city}
 
   .input--submit
     = f.button :submit, "Create Post", class: "btn btn-info"

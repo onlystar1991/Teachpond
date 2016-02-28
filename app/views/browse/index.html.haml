@@ -16,7 +16,7 @@
             %li
               - if category.record_count > 1
                 = link_to category.title.titleize.pluralize, category_browse_index_path(category)
-              - else 
+              - else
                 = link_to category.title.titleize, category_browse_index_path(category)
 
               %span.pull-right (#{category.record_count})

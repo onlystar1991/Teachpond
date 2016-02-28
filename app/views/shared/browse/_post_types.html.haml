@@ -3,7 +3,7 @@
 		- @locations.each do |location|
 			%li
 				= link_to location.city, location_requests_path(location)
-				%span.pull-right (#{location.requests.count})
+				%span.pull-right (#{location.requests.count + location.posts.count})
 
 		%form{:action => "/locations/", :method => "get", :id => "location_filter"}
 			.form-group

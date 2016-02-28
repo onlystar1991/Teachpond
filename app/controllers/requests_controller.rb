@@ -2,6 +2,7 @@ class RequestsController < ApplicationController
   before_action :find_request, only: [:show, :edit, :update, :destroy]
   before_action :all_categories, only: [:index, :new]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :locations
 
   def index
     if params[:category_id] && params[:q]
@@ -41,7 +42,30 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = current_user.requests.build(request_params)
+
+    if request_params[:location_id] == '7'
+      if Location.exists?(:city => params[:location])
+        location = Location.find_by(city: params[:location])
+      else
+        location = Location.new
+        location.city = params[:location]
+        location.normal = false
+        location.save  
+      end
+      
+      data = Hash.new
+      data[:category_id] = request_params[:category_id]
+      data[:title] = request_params[:title]
+      data[:description] = request_params[:description]
+      data[:experience] = request_params[:experience]
+      data[:location_id] = location.id
+      data[:years_experience] = request_params[:years_experience]
+      data[:price] = request_params[:price]
+      
+      @request = current_user.requests.build(data)
+    else
+      @request = current_user.requests.build(request_params)
+    end
 
     if @request.save
       redirect_to @request, notice: "Successfuly create new Request"
@@ -80,4 +104,12 @@ class RequestsController < ApplicationController
       params.require(:request).permit(:title, :description, :category_id, :price)
     end
 
+    def locations
+      @normal_locations = Location.where(:normal => true)
+      gon.additional_locations = Location.where(:normal => false)
+      # @additional_locations = Location.all
+
+      @locations = Location.all
+    end
+    
 end

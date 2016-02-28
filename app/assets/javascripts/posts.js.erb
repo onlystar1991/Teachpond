@@ -12,8 +12,6 @@ $(function() {
 		reader.readAsDataURL(image);
 		console.log(files);
 	});
-
-	$("#post_location").hide();
 	
 	$('form').on('click', '.post_image_class img', function(e) {
 		$('#post_image').click();
@@ -26,7 +24,6 @@ $(function() {
 	}
 
 	$("#post_location_id").on('change', function(event) {
-		
 		console.log($(this).val());
 		if ($(this).val() == 7) {
 			$("#post_location").show();
@@ -42,12 +39,16 @@ $(function() {
 		}
 	})
 	var location = [];
-	console.log(gon.additional_locations);
-	for(var object in gon.additional_locations) {
-		location.push(gon.additional_locations[object].city)
-	}
-	console.log(location);
 	
+	if (! typeof gon == "undefined") {
+		for(var object in gon.additional_locations) {
+			location.push(gon.additional_locations[object].city)
+		}
+	}
+	
+
+	console.log(location);
+
 	$("#post_location").autocomplete({
       source: location
     });

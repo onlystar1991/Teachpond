@@ -1,0 +1,38 @@
+$(function() {
+
+	if ($("#request_location_id").val() < 7) {
+		$("#request_location").hide();
+	} else {
+		$("#request_location").show();
+	}
+
+	$("#request_location_id").on('change', function(event) {
+		console.log($(this).val());
+		if ($(this).val() == 7) {
+			$("#request_location").show();
+		} else {
+			$("#request_location").hide();
+		}
+	})
+
+	$('input[type=submit]').click(function(event) {
+		if (($("#request_location_id").val() == 7) && ($.trim($("#request_location").val()) == "")) {
+			alert("Please input city name");
+			return false;
+		}
+	})
+	
+	var location = [];
+	
+	if (! typeof gon == "undefined") {
+		for(var object in gon.additional_locations) {
+			location.push(gon.additional_locations[object].city)
+		}
+	}
+	
+	console.log(location);
+
+	$("#request_location").autocomplete({
+      source: location
+    });
+})
