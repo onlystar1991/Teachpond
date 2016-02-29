@@ -1,10 +1,17 @@
 .col-xs-12.no--padding
 	%ul.list--reset.filter--list
-		- @locations.each do |location|
+		- @normal_locations.each do |location|
 			%li
-				= link_to location.city, location_requests_path(location)
-				%span.pull-right (#{location.requests.count + location.posts.count})
+				- if location.city == 'Other'
+					- counts = 0
+					- @additional_locations.each do |location|
+						- counts += location.requests.count + location.posts.count
+					= link_to location.city, '#', :id => "other_location"
+					%span.pull-right (#{counts})
+				- else
+					= link_to location.city, location_browse_index_path(location)
+					%span.pull-right (#{location.requests.count + location.posts.count})
 
 		%form{:action => "/locations/", :method => "get", :id => "location_filter"}
 			.form-group
-				%input{:name => "p", :type =>"text", :class => "form-control"}
+				%input{:name => "p", :type =>"text", :class => "form-control", :id => "additional_cities"}

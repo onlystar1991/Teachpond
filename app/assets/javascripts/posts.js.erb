@@ -1,4 +1,8 @@
 $(function() {
+	$("#other_location").click(function(e){
+		e.preventDefault();
+	})
+
 	$('#post_image').on('change', function(event) {
 		var files = event.target.files;
 		var image = files[0];
@@ -37,19 +41,21 @@ $(function() {
 			alert("Please input city name");
 			return false;
 		}
-	})
+	});
+
 	var location = [];
-	
-	if (! typeof gon == "undefined") {
+	if (! (typeof gon == "undefined")) {
 		for(var object in gon.additional_locations) {
 			location.push(gon.additional_locations[object].city)
 		}
 	}
-	
-
-	console.log(location);
 
 	$("#post_location").autocomplete({
+      source: location
+    });
+
+
+    $("#additional_cities").autocomplete({
       source: location
     });
 })

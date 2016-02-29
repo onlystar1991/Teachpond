@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/how-it-works' => "static_pages#how_it_works"
   get '/add-new' => "static_pages#add_new"
   get '/browse' => "browse#index"
+  get '/locations' => "browse#index"
 
   # Users
   resources :users do

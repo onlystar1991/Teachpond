@@ -15,11 +15,11 @@
       = f.input :location_id, as: :select, collection: @normal_locations.map{|location| [location.city, location.id]}, prompt: "Select Location", required: true
 
   - if @request.location_id.nil?
-    .form-group.string.optional.post_location
+    .form-group.string.optional.request_location
       %input#request_location.form-control{:name => 'location', :placeholder => "Please input city", :type => "text"}
   - else
-    .form-group.string.optional.post_location
-      %input#post_location.form-control{:name => 'location', :placeholder => "Please input city", :type => "text", :value => @request.location.city}
+    .form-group.string.optional.request_location
+      %input#request_location.form-control{:name => 'location', :placeholder => "Please input city", :type => "text", :value => @request.location.city}
 
   .input--submit
     = f.button :submit, "Create Post", class: "btn btn-info"

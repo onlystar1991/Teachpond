@@ -5,6 +5,9 @@ class RequestsController < ApplicationController
   before_action :locations
 
   def index
+    puts "--------- Request Params---------"
+    puts params.inspect
+
     if params[:category_id] && params[:q]
       search_term = params[:q]
       requests = Category.find(params[:category_id]).requests
@@ -30,8 +33,11 @@ class RequestsController < ApplicationController
     else
       @requests = Request.all
     end
-
+    
     @locations = Location.all
+
+    puts "---------all posts-----------"
+    puts @requests.inspect
   end
 
   def show
@@ -75,6 +81,8 @@ class RequestsController < ApplicationController
   end
 
   def edit
+    puts "-------"
+    puts @request.inspect
   end
 
   def update
@@ -101,7 +109,7 @@ class RequestsController < ApplicationController
     end
 
     def request_params
-      params.require(:request).permit(:title, :description, :category_id, :price)
+      params.require(:request).permit(:title, :description, :category_id, :price, :location_id)
     end
 
     def locations

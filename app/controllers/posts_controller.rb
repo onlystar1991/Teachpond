@@ -31,6 +31,9 @@ class PostsController < ApplicationController
     else
       @posts = Post.all
     end
+    puts "---------all posts-----------"
+    puts @posts.inspect
+
   end
 
   def show
