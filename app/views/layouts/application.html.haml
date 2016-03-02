@@ -32,6 +32,7 @@
 
         - if user_signed_in?
           %ul.nav.navbar-nav.navbar-right
+            %li= link_to "The Idea", new_post_path
             %li= link_to "Teach Something", new_post_path
             %li= link_to "Learn Something", new_request_path
             %li.dropdown

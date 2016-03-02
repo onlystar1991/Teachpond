@@ -9,8 +9,8 @@
       = simple_form_for @profile, url: user_profile_path do |f|
         = f.input :first_name
         = f.input :last_name
-        = f.input :city
         = f.input :country
+        = f.input :city
         .avatar_class
           = gravatar_for @profile
         = f.file_field :avatar

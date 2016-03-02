@@ -13,15 +13,16 @@ class BrowseController < ApplicationController
     elsif params[:location_id] && params[:q]
       search_term = params[:q]
       posts = Location.find(params[:location_id]).posts
-      requests = Category.find(params[:location_id]).requests
+      requests = Location.find(params[:location_id]).requests
       @posts = posts.where("title LIKE ?", "%#{search_term}%")
       @requests = requests.where("title LIKE ?", "%#{search_term}%")
+      @search_title = Location.find(params[:location_id]).city
     elsif params[:location_id]
-      @posts = Category.find(params[:location_id]).posts
-      @requests = Category.find(params[:location_id]).requests
-    elsif params[:p]
-      search_term = params[:p]
-      location = Location.find_by(:city => params[:p])
+      @posts = Location.find(params[:location_id]).posts
+      @requests = Location.find(params[:location_id]).requests
+      @search_title = Location.find(params[:location_id]).city
+    elsif params[:city]
+      location = Location.find_by(:city => params[:city])
       if !location.nil?
         @posts = location.posts
         @requests = location.requests 
@@ -29,11 +30,13 @@ class BrowseController < ApplicationController
         @posts = []
         @requests = []
       end
+      @search_title = params[:city]
     else
       @posts = Post.all
       @requests = Request.all
     end
-
+    puts "---search title-------"
+    puts @search_title
     @categories = Category.all
     @normal_locations = Location.where(:normal => true)
     @additional_locations = Location.where(:normal => false)

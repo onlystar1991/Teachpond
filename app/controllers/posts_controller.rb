@@ -31,12 +31,11 @@ class PostsController < ApplicationController
     else
       @posts = Post.all
     end
-    puts "---------all posts-----------"
-    puts @posts.inspect
-
+    
   end
 
   def show
+    
   end
 
 
@@ -80,8 +79,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    puts "----------Edit-----------"
-    puts @additional_locations.inspect
+    
   end
 
   def update

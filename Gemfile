@@ -31,6 +31,7 @@ gem 'jquery-ui-sass-rails'
 gem 'puma'
 gem 'paperclip', '~>4.1'
 gem 'gon'
+gem 'city-state'
 
 
 

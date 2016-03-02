@@ -10,10 +10,10 @@ class Post < ActiveRecord::Base
   
   #check validity of fields
   validates :category_id, :presence => true
-  validates :title, :presence => true, :length => {:minimum =>5, :maximum => 50}
-  validates :description, :presence => true, :length => { :minimum => 20 }
-  validates :experience, :presence => true, :length => { :minimum => 20 }
-  validates :years_experience, :presence => true
-  validates :price, :presence => true
+  validates :title, :presence => true, :length => {:minimum =>5, :maximum => 75}
+  validates :description, :presence => true, :length => { :minimum => 20}
+  validates :experience, :presence => true, :length => { :minimum => 20}
+  validates :years_experience, :presence => true, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :price, :presence => true, :numericality => { :greater_than_or_equal_to => 0 }
 
 end

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/add-new' => "static_pages#add_new"
   get '/browse' => "browse#index"
   get '/locations' => "browse#index"
+  get '/location/:location' => "locations#index"
 
   # Users
   resources :users do

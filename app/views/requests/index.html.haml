@@ -7,7 +7,7 @@
 
     .col-xs-12.col-sm-3.col-md-2
       .filter--section
-        %h4.filter--title Top Categories
+        %h4.filter--title Categories
         %ul.list--reset.filter--list
           %li= link_to "All", requests_path
           - @categories.each do |category|
@@ -20,7 +20,7 @@
               %span.pull-right (#{category.requests.count})
 
       .filter--section
-        %h4.filter--title Filter by cities
+        %h4.filter--title Sort by City
         = render 'shared/browse/post_types'
 
     .col-xs-12.col-sm-9.col-md-10

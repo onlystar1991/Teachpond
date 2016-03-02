@@ -17,4 +17,19 @@ $(function() {
 	$('form').on('click', '.avatar_class img', function(e) {
 		$('#profile_avatar').click();
 	})
+
+	$("#profile_country").on('change', function(event) {
+		var input_country = $(this);
+		$.getJSON('/location/' + $(this).val(), function (data) {
+			$("#profile_city").autocomplete({
+		      source: data
+		    });
+		})
+	})
+	
+	$.getJSON('/location/' + $("#profile_country").val(), function (data) {
+		$("#profile_city").autocomplete({
+	      source: data
+	    });
+	})
 })
