@@ -9,35 +9,49 @@
 
   %title= full_page_title(yield(:title))
   = include_gon
-  %link{:href => "https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,700,600", :rel => "stylesheet", :type => "text/css"}
+ 
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = csrf_meta_tags
 
-%body{:class => @home_page ? 'homepage' : ''}
-
-  %nav.navbar.navbar-inverse.navbar-static-top
+%body{:class => @home_page ? 'homepage' : '', :id => !user_signed_in? ? "not-sign-in" : "temp"}
+  %nav.navbar.navbar-default.navbar-static-top
     .container
-      .navbar-header
+      .navbar-header.half-size
         %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#main-menu-1", "data-toggle" => "collapse", :type => "button"}
           %span.sr-only Toggle navigation
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        -# .navbar-brand= link_to "TeachArena", root_path
-        = link_to (root_path), class: "navbar-brand" do
+        = link_to (root_path), class: "pull-left nav-brand" do
           = image_tag("logo.png", class: "navbar--logo")
+        .pull-left.search_form
+          %form{:action => "/browse"}
+            %h5 Develop yourself with teachers, tutors, coaches and mentors around the world.
+            .top-search-div
+              %input{:type => "text", :name => "searchKey", :class => "form-control"}
+              %button{:class => "btn top-search-button pull-right"}
+                %i{:class => 'fa fa-search'}
 
-      #main-menu-1.collapse.navbar-collapse
-
+      #main-menu-1.collapse.navbar-collapse.half-size.pull-right
         - if user_signed_in?
           %ul.nav.navbar-nav.navbar-right
-            %li= link_to "The Idea", new_post_path
-            %li= link_to "Teach Something", new_post_path
-            %li= link_to "Learn Something", new_request_path
+            %li
+              = link_to(new_post_path) do
+                %button{:class => "btn pull-right"}
+                  %i{:class => "fa fa-2x fa-plus-square-o"}
+            %li
+              = link_to (browse_path) do
+                %button{:class => "btn pull-right"}
+                  %i{:class => "fa fa-2x fa-home"}
+            %li
+              = link_to ("#") do
+                %button{:class => "btn pull-right"}
+                  %i{:class => "fa fa-2x fa-globe"}
             %li.dropdown
               %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                My Account
+                %button{:class => "btn"}
+                  %i{:class => "fa fa-2x fa-user"}
                 %span.caret
               %ul.dropdown-menu
                 %li= link_to "My Profile", current_user
@@ -49,12 +63,20 @@
 
         - else
           %ul.nav.navbar-nav.navbar-right
-            %li= link_to "Teach Something", new_post_path
-            %li= link_to "Learn Something", new_request_path
-            %li= link_to "Sign Up", new_user_registration_path
-            %li= link_to "Sign In", new_user_session_path
-
-
+            = link_to (new_user_session_path) do
+              %button{:class => "btn pull-right"}
+                %i{:class => "fa fa-2x fa-sign-in"}
+            = link_to (new_post_path) do
+              %button{:class => "btn pull-right"}
+                %i{:class => "fa fa-2x fa-user"}
+            = link_to (browse_path) do
+              %button{:class => "btn pull-right"}
+                %i{:class => "fa fa-2x fa-globe"}
+  - if !flash.nil?
+    .container.home-padding
+      - flash.each do |name, msg|
+        = content_tag :div, msg, class: "alert alert-info"
+  - else
     .container
       - flash.each do |name, msg|
         = content_tag :div, msg, class: "alert alert-info"

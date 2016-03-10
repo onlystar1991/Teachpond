@@ -10,21 +10,29 @@
 
       - if @posts.length > 0
         - @posts.each do |post|
-          .col-xs-12.col-md-6.no--padding--left
-            .post--box.box
-              .post--info
-                %p
-                  %span.info--city= post.user.profile.city
-                  %span.info--price.pull-right
-                    = post.price
-                    hr
-              .post--title
-                %h3= link_to post.title, post
-              .post--profile
-                = gravatar_for post.user.profile
-                = link_to post.user.profile.name, post.user
-                %a.post--message--icon.pull-right{ href: "#0", alt: "Message"}
-                  %i.fa.fa-envelope-o
+          .col-xs-12.col-sm-6.col-md-4.post-collect
+            .post-gallery
+              .post-image
+                = image_tag(post.image.url, class: 'post-image')
+              %span.pull-left.post-price
+                $
+                %strong
+                  10
+              .col-md-12.row-reviews
+                .rating.pull-left
+                  %i.fa.fa-star
+                  %i.fa.fa-star
+                  %i.fa.fa-star
+                  %i.fa.fa-star
+                  %i.fa.fa-star
+              .col-md-12.row-title
+                %h5 #{post.title}
+              %hr
+              .row
+                .col-md-5.pull-left
+                  = image_tag(post.user.profile.avatar.url, class: 'post-avatar')
+                  %p.post-name #{post.user.profile.first_name}&nbsp;#{post.user.profile.last_name.slice(0,1).capitalize}.
+                
 
       - else
         %p.text-muted There are no posts for this user

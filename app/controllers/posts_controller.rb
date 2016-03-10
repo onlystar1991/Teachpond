@@ -45,7 +45,6 @@ class PostsController < ApplicationController
 
 
   def create
-
     if post_params[:location_id] == '7'
       if Location.exists?(:city => params[:location])
         location = Location.find_by(city: params[:location])
@@ -53,7 +52,7 @@ class PostsController < ApplicationController
         location = Location.new
         location.city = params[:location]
         location.normal = false
-        location.save  
+        location.save
       end
       
       data = Hash.new
@@ -75,7 +74,6 @@ class PostsController < ApplicationController
     else
       render 'new'
     end
-
   end
 
   def edit
@@ -83,7 +81,6 @@ class PostsController < ApplicationController
   end
 
   def update
-
     data = Hash.new
     data[:category_id] = post_params[:category_id]
     data[:title] = post_params[:title]
@@ -99,7 +96,7 @@ class PostsController < ApplicationController
         location = Location.new
         location.city = params[:location]
         location.normal = false
-        location.save  
+        location.save
       end
       data[:location_id] = location.id
     else
@@ -119,7 +116,6 @@ class PostsController < ApplicationController
   end
 
   private
-
     def find_post
       @post = Post.find(params[:id])
     end
@@ -131,7 +127,7 @@ class PostsController < ApplicationController
     def locations
       @normal_locations = Location.where(:normal => true)
       gon.additional_locations = Location.where(:normal => false)
-      # @additional_locations = Location.all
+      @additional_locations = Location.all
 
       @locations = Location.all
     end
@@ -139,5 +135,4 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :description, :experience, :years_experience, :price, :category_id, :image, :location_id, :location)
     end
-
 end

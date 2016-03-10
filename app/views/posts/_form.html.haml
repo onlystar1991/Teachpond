@@ -3,7 +3,8 @@
     = f.label :category_id, label: "Select a Category for this Post"
     = f.input_field :category_id, as: :select, collection: Category.all, prompt: "Select category", required: true
     = f.error :category_id
-  = f.input :title, placeholder: 'Example: English Teach'
+
+  = f.input :title, placeholder: 'I can teach'
   = f.input :description, placeholder: 'Try to describe what you can do for students, minimum 20 characters'
   = f.input :experience, placeholder: 'Briefly describe your experience, minimum 20 characters'
   - if @post.location_id.nil?
@@ -29,5 +30,6 @@
   .post_image_class
     = image_tag(@post.image.url, title: 'Click here to change post image.')
   = f.file_field :image
+  %br
   .input--submit
     = f.button :submit, class: "btn btn-primary"

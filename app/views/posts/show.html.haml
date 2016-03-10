@@ -34,14 +34,18 @@
       .box.box--floated.clear
         .box--main.col-xs-12.col-sm-8
           .main--content
-            %h4 Description
-            %p= @post.description
-            %h4 Experience
-            %p= @post.experience
-            %h4 Years of experience
-            %p
-              = @post.years_experience
-              years
+            .row
+              %h4 Description
+              %div= @post.description
+            .row
+              %h4 Experience
+              %div= @post.experience
+            .row
+
+              %h4 Years of experience
+              %p
+                = @post.years_experience
+                years
             .post_image
               = image_tag(@post.image.url)
 

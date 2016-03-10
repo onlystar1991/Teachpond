@@ -10,6 +10,8 @@ class UsersController < ApplicationController
     @country = @profile.country ? @profile.country : ''
     @posts = @user.posts ? @user.posts : ''
     @requests = @user.requests ? @user.requests : ''
+
+    @active_tab = 0
   end
 
   private
@@ -25,7 +27,6 @@ class UsersController < ApplicationController
     def require_permission
       if current_user != User.find(params[:id])
         redirect_to new_user_session_path
-        #Or do something else here
       end
     end
 end

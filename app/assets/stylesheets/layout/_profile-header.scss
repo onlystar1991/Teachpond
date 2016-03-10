@@ -1,37 +1,29 @@
-
-
-
-
 .header--profile {
   padding-bottom: 0;
-
   .header--content {
     padding-bottom: 0;
   }
-
   @media only screen and (min-width: $screen-sm-min) {
     text-align: left;
   }
-
 }
-
 .profile--content {
   padding-bottom: 2.5rem;
 }
-
 .main--profile--picture {
-
   .gravatar {
     height: 15rem;
   }
-
 }
-
 .profile--name {
   font-weight: 800;
   margin-top: 1rem;
 }
-
 .profile--country {
   color: $text-color-muted;
+}
+.sub--nav a.active {
+  background-color: #464d57;
+  border-bottom: 2px solid #ffffff;
+  color: #ffffff;
 }

@@ -1,11 +1,7 @@
 - provide(:title, "Browse")
-
-= render 'header'
-
 .container
   .row.content--section
-
-    .col-xs-12.col-sm-3.col-md-2
+    .col-xs-12.col-sm-3.col-md-2.left-menu
       .filter--section
         %h4.filter--title Categories
         %ul.list--reset.filter--list
@@ -18,14 +14,12 @@
                 = link_to category.title.titleize.pluralize, category_browse_index_path(category)
               - else
                 = link_to category.title.titleize, category_browse_index_path(category)
-
               %span.pull-right (#{category.record_count})
-
       .filter--section
         %h4.filter--title Sort by City
         = render 'shared/browse/post_types'
-
-    .col-xs-12.col-sm-9.col-md-10
+    
+    .col-xs-12.col-sm-9.col-md-10.post-area
       .area--section
         - if ! @search_title.nil?
           .col-xs-12
@@ -33,40 +27,42 @@
         - else
           .col-xs-12
             %h4 Things to learn all over the world
-
-        .row.area--button--section
-          .area--button.col-xs-12
-            = link_to posts_path, class: "btn btn-primary btn--teacher" do
-              %span Browse Teachers
-
         .row
           - @posts.each do |post|
-            .col-xs-12.col-sm-6.col-md-4
-              .post--box.box
-                .post--info
-                  %p
-                    %span.info--city= post.location.city
-                    %span.info--price.pull-right.dollar--sign
-                      = post.price
-                      hr
-                .post--title
-                  %h3= link_to post.title, post
-                .post--profile
-                  = gravatar_for post.user.profile
-                  = link_to post.user.profile.name, post.user
-                  %a.post--message--icon.pull-right{ href: "#0", alt: "Message"}
-                    %i.fa.fa-envelope-o
+            .col-xs-6.col-sm-4.col-md-3.post-collect
+              .post-gallery
+                .post-image
+                  = image_tag(post.image.url, class: 'post-image')
+                %span.pull-left.post-price
+                  $
+                  %strong
+                    10
+                .col-md-12.row-reviews
+                  .pull-left.post-review
+                    %p 8 Reviews
+                  .rating.pull-right
+                    %i.fa.fa-star
+                    %i.fa.fa-star
+                    %i.fa.fa-star
+                    %i.fa.fa-star
+                    %i.fa.fa-star
+                .col-md-12.row-title
+                  %h5 #{post.title}
+                %hr
+                .row
+                  .col-md-5.pull-left
+                    = image_tag(post.user.profile.avatar.url, class: 'post-avatar')
+                    %p.post-name #{post.user.profile.first_name}&nbsp;#{post.user.profile.last_name.slice(0,1).capitalize}.
+                  .col-md-7.pull-right
+                    .fa.fa-envelope-o.pull-right.post-add-tool.post-mail
+                    .fa.fa-envelope-o.pull-right.post-add-tool.post-forward
+                    .fa.fa-heart-o.pull-right.post-add-tool.post-favour
         - if ! @search_title.nil?
           .col-xs-12
             %h4 Things to teach in #{@search_title}
         - else
           .col-xs-12
             %h4 Things to teach all over the world
-        .row.area--button--section
-          .area--button.col-xs-12
-            = link_to requests_path, class: "btn btn-info btn--student" do
-              %span Browse Students
-
         .row
           - @requests.each do |request|
             .col-xs-12.col-sm-6.col-md-4

@@ -1,15 +1,12 @@
 // -----------------------------------------------------------------------------
 // This file contains homepage styles.
 // -----------------------------------------------------------------------------
-
-
 .homepage {
   display: table;
   height: 100%;
   width: 100%;
   background: $dark-background;
   position: relative;
-
 
   &:before, &:after {
     content: '';
@@ -49,11 +46,6 @@
     width: 100%;
     padding: 0;
 
-    h1 {
-      max-width: 60rem;
-      margin: 0 auto 5rem auto;
-    }
-
   }
 
   .hero--content {
@@ -75,22 +67,51 @@
     z-index: 10;
   }
 
+  h5 {
+    color: white;
+  }
+  .navbar-nav {
+    margin-top: 15px;
+  }
+  .navbar-static-top {
+    background: transparent !important;
+    border: none !important;
+    background-color: rgba(128, 128, 128, 0.3) !important;
+  }
+  .btn {
+    background: transparent !important;
+    color: white !important;
+  }
+}
+
+
+#not-sign-in {
+  .navbar-nav {
+    margin-top: 15px;
+  }
+  .navbar-static-top {
+    background: transparent !important;
+    border: none !important;
+    background-color: rgba(128, 128, 128, 0.3) !important;
+  }
+  .btn {
+    background: transparent !important;
+    color: black !important;
+  }
 }
 
 @media only screen and (max-height: 50rem) {
-
   .homepage {
-
     .hero--section {
       height: 70%;
     }
-
   }
-
 }
+
 .avatar_class img, .post_image_class img {
   border: 1px solid gray;
   border-radius: 10px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(1, 1, 1, 0.6);
 }
 
 #profile_avatar {
@@ -100,7 +121,38 @@
 #post_image {
   display: none;
 }
+
 .post_image img {
   border: 1px solid gray;
   border-radius: 5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(1, 1, 1, 0.6);
+}
+.navbar--logo {
+  width: 70px;
+  height: 70px;
+}
+.navbar-static-top {
+  position: fixed;
+  width: 100%;
+  background: $gray-lighter;
+}
+.top-search-button {
+  margin-top: -34px;
+  background: white;
+  border: 1px solid #ccc;
+}
+ul.navbar-nav li {
+  color: black;
+}
+
+#request_image {
+  display: none;
+}
+
+.request_image_class img {
+  max-width: 300px;
+  max-height: 300px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(1, 1, 1, 0.6);
 }

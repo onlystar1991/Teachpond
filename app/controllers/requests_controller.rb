@@ -5,9 +5,7 @@ class RequestsController < ApplicationController
   before_action :locations
 
   def index
-    puts "--------- Request Params---------"
-    puts params.inspect
-
+    
     if params[:category_id] && params[:q]
       search_term = params[:q]
       requests = Category.find(params[:category_id]).requests
@@ -35,9 +33,6 @@ class RequestsController < ApplicationController
     end
     
     @locations = Location.all
-
-    puts "---------all posts-----------"
-    puts @requests.inspect
   end
 
   def show
@@ -56,7 +51,7 @@ class RequestsController < ApplicationController
         location = Location.new
         location.city = params[:location]
         location.normal = false
-        location.save  
+        location.save
       end
       
       data = Hash.new
@@ -115,7 +110,7 @@ class RequestsController < ApplicationController
     def locations
       @normal_locations = Location.where(:normal => true)
       gon.additional_locations = Location.where(:normal => false)
-      # @additional_locations = Location.all
+      @additional_locations = Location.all
 
       @locations = Location.all
     end

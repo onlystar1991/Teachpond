@@ -1,25 +1,33 @@
 .header--section.header--profile
   .container.header--content
     .row
-
       .profile--content.clear
         .col-xs-12.col-sm-3.col-md-2
           .main--profile--picture
             = gravatar_for current_user.profile
-            
         .col-xs-12.col-sm-9.col-md-10
           %h2.profile--name= current_user.profile.name
-          %p.profile--country
+          %h5.profile--country
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+            (5)
+          %h5.profile--country
+            %i.fa.fa-shield
+            Hired 0 times
+          %h5.profile--country
+            %i.fa.fa-map-marker
             = current_user.profile.city
             ,
             = current_user.profile.country
-
       .col-xs-12
         .sub--nav
           %ul.nav.nav-tabs
             %li
-              = link_to "My profile", current_user
+              = link_to "My profile", current_user, :class => (@active_tab == 0) ? 'active' : ''
             %li
-              = link_to "Edit profile", edit_user_profile_path(current_user.id, current_user.profile.id)
+              = link_to "Edit profile", edit_user_profile_path(current_user.id, current_user.profile.id), :class => (@active_tab == 1) ? 'active' : ''
             %li
-              = link_to "Account Settings", edit_user_registration_path
+              = link_to "Account Settings", edit_user_registration_path, :class => @active_tab.nil? ? 'active' : ""

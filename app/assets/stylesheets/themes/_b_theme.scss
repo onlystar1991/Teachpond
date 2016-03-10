@@ -1,22 +1,3 @@
-/*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-
-//
-// Load core variables and mixins
-// --------------------------------------------------
-
-// @import "variables";
-// @import "mixins";
-//
-
-//
-// Buttons
-// --------------------------------------------------
-
-// Common styles
 .btn-default,
 .btn-primary,
 .btn-success,
@@ -141,10 +122,6 @@
     @include box-shadow(inset 0 3px 9px rgba(0,0,0,.075));
   }
 }
-.navbar-brand,
-.navbar-nav > li > a {
-  text-shadow: 0 1px 0 rgba(255,255,255,.25);
-}
 
 // Inverted navbar
 .navbar-inverse {
@@ -156,18 +133,6 @@
     @include gradient-vertical($start-color: $navbar-inverse-link-active-bg, $end-color: lighten($navbar-inverse-link-active-bg, 2.5%));
     @include box-shadow(inset 0 3px 9px rgba(0,0,0,.25));
   }
-
-  .navbar-brand,
-  .navbar-nav > li > a {
-    text-shadow: 0 -1px 0 rgba(0,0,0,.25);
-  }
-}
-
-// Undo rounded corners in static and fixed navbars
-.navbar-static-top,
-.navbar-fixed-top,
-.navbar-fixed-bottom {
-  border-radius: 0;
 }
 
 // Fix active state of dropdown items in collapsed mode

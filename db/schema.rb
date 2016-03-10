@@ -11,13 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224174912) do
+ActiveRecord::Schema.define(version: 20160309092311) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "contracts", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "status"
+    t.float    "payment"
+    t.float    "rate"
+    t.integer  "profile_id"
+    t.integer  "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "contracts", ["profile_id"], name: "index_contracts_on_profile_id"
 
   create_table "locations", force: :cascade do |t|
     t.string   "city"
@@ -63,12 +76,16 @@ ActiveRecord::Schema.define(version: 20160224174912) do
   create_table "requests", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "user_id"
     t.integer  "category_id"
     t.integer  "price"
     t.integer  "location_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "requests", ["category_id"], name: "index_requests_on_category_id"

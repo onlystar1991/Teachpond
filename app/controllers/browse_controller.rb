@@ -35,13 +35,11 @@ class BrowseController < ApplicationController
       @posts = Post.all
       @requests = Request.all
     end
-    puts "---search title-------"
-    puts @search_title
+    
     @categories = Category.all
     @normal_locations = Location.where(:normal => true)
     @additional_locations = Location.where(:normal => false)
     gon.additional_locations = @additional_locations
-    
   end
 
 end

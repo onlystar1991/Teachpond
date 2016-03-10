@@ -1,8 +1,10 @@
 class ProfilesController < ApplicationController
+  
+  before_action :authenticate_user!, except: [:index, :show]
 
   def edit
     @profile = Profile.find_by user_id: (params[:id])
-    
+    @active_tab = 1
   end
 
   def update
