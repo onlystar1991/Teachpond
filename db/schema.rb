@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309092311) do
+ActiveRecord::Schema.define(version: 20160311180447) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160309092311) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title"
+    t.text     "title"
     t.text     "description"
     t.text     "experience"
     t.integer  "years_experience"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160309092311) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "location_id"
+    t.string   "url"
   end
 
   add_index "posts", ["category_id"], name: "index_posts_on_category_id"
@@ -74,7 +75,7 @@ ActiveRecord::Schema.define(version: 20160309092311) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.string   "title"
+    t.text     "title"
     t.text     "description"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
@@ -86,6 +87,7 @@ ActiveRecord::Schema.define(version: 20160309092311) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "url"
   end
 
   add_index "requests", ["category_id"], name: "index_requests_on_category_id"

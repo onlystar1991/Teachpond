@@ -12,8 +12,8 @@
               - if category.record_count > 1
                 = link_to category.title.titleize.pluralize, category_browse_index_path(category)
               - else
-                = link_to category.title.titleize, category_browse_index_path(category)
-              %span.pull-right (#{category.posts.count})
+                = link_to category.title.titleize, category_requests_path(category)
+              %span.pull-right (#{category.requests.count})
 
       .filter--section
         %h4.filter--title Sort by City
@@ -24,38 +24,37 @@
                 - if location.city == 'Other'
                   - counts = 0
                   - @additional_locations.each do |location|
-                    - counts += location.posts.count
+                    - counts += location.requests.count
 
                   = link_to location.city, '#', :id => "other_location"
                   %span.pull-right (#{counts})
 
                 - else
-                  = link_to location.city, location_browse_index_path(location)
-                  %span.pull-right (#{location.posts.count})
+                  = link_to location.city, location_requests_path(location)
+                  %span.pull-right (#{location.requests.count})
 
             %form{:action => "/locations/", :method => "get", :id => "location_filter"}
               .form-group
               %input{:name => "city", :type =>"text", :class => "form-control", :id => "additional_cities"}
-
     
     .col-xs-6.col-sm-9.col-md-10.post-area
       .area--section
-        = link_to "Show people who want to learn", browse_requests_path
+        = link_to "Show people who want to teach", browse_path
         - if ! @search_title.nil?
           .col-xs-12
-            %h4 Things to learn in #{@search_title}
+            %h4 Things to learn in #{@search_title} 
         - else
           .col-xs-12
             %h4 Things to learn all over the world
-        - @posts.each do |post|
+        - @requests.each do |request|
           .col-xs-12.col-sm-4.col-md-3.post-collect
             .post-gallery
               .post-image
-                = image_tag(post.image.url, class: 'post-image')
+                = image_tag(request.image.url, class: 'post-image')
               %span.pull-left.post-price
                 $
                 %strong
-                  #{post.price}
+                  #{request.price}
               .col-md-12.row-reviews
                 .pull-left.post-review
                   %p 8 Reviews
@@ -66,11 +65,12 @@
                   %i.fa.fa-star
                   %i.fa.fa-star
               .col-md-12.row-title
-                %h5 I will teach you #{post.title}
+                = link_to 'I want to learn' << request.title, request_path(request.user)
               .row
                 .col-md-5.pull-left
-                  = gravatar_for(post.user.profile)
-                  %p.post-name #{post.user.profile.first_name}&nbsp;#{post.user.profile.last_name.slice(0,1).capitalize}.
+                  = gravatar_for(request.user.profile)
+                  - user_name = request.user.profile.first_name << " " <<  request.user.profile.last_name.slice(0,1).capitalize << "."
+                  = link_to user_name, user_path(request.user)
                 .col-md-7.pull-right
                   .fa.fa-envelope-o.pull-right.post-add-tool.post-mail
                   .fa.fa-angle-double-right.pull-right.post-add-tool.post-forward

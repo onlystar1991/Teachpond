@@ -1,16 +1,48 @@
 - provide(:title, @first_name + " " + @last_name)
 
-= render 'shared/header'
-
+.header--section.header--profile
+  .container.header--content
+    .row
+      .profile--content.clear
+        .col-xs-12.col-sm-3.col-md-2
+          .main--profile--picture
+            = gravatar_for @user.profile
+        .col-xs-12.col-sm-5.col-md-4
+          %h2.profile--name= @user.profile.name
+          %h5.profile--country
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+            %i.fa.fa-star
+            (5)
+          %h5.profile--country
+            %i.fa.fa-shield
+            Hired 0 times
+          %h5.profile--country
+            %i.fa.fa-map-marker
+            = @user.profile.city
+            ,
+            = @user.profile.country
+        .col-xs-12.col-sm-3.col-md-3
+      - if current_user.id == @user.id
+        .col-xs-12
+          .sub--nav
+            %ul.nav.nav-tabs
+              %li
+                = link_to "My profile", current_user, :class => (@active_tab == 0) ? 'active' : ''
+              %li
+                = link_to "Edit profile", edit_user_profile_path(current_user.id, current_user.profile.id), :class => (@active_tab == 1) ? 'active' : ''
+              %li
+                = link_to "Account Settings", edit_user_registration_path, :class => @active_tab.nil? ? 'active' : ""
 .container
   .row.content--section
-
     .col-xs-12.col-sm-6
       %h4 As a teacher
 
       - if @posts.length > 0
         - @posts.each do |post|
-          .col-xs-12.col-sm-6.col-md-4.post-collect
+          .col-xs-6.col-sm-6.col-md-4.post-collect
             .post-gallery
               .post-image
                 = image_tag(post.image.url, class: 'post-image')
@@ -18,44 +50,34 @@
                 $
                 %strong
                   10
-              .col-md-12.row-reviews
-                .rating.pull-left
-                  %i.fa.fa-star
-                  %i.fa.fa-star
-                  %i.fa.fa-star
-                  %i.fa.fa-star
-                  %i.fa.fa-star
               .col-md-12.row-title
                 %h5 #{post.title}
-              %hr
               .row
                 .col-md-5.pull-left
-                  = image_tag(post.user.profile.avatar.url, class: 'post-avatar')
+                  = gravatar_for(post.user.profile)
                   %p.post-name #{post.user.profile.first_name}&nbsp;#{post.user.profile.last_name.slice(0,1).capitalize}.
-                
-
+                .fa.fa-envelope-o.pull-right.post-list-tool.post-mail
       - else
         %p.text-muted There are no posts for this user
-
-
     .col-xs-12.col-sm-6
-
       %h4 As a student
-
       - if @requests.length > 0
         - @requests.each do |request|
-
-          .col-xs-12.col-md-6.no--padding--left
-            .request--box.box
-              .request--info
-                %p= request.user.profile.city
-              .request--title
-                %h3= link_to request.title, request
-              .request--profile
-                = gravatar_for request.user.profile
-                = link_to request.user.profile.name, request.user
-                %a.request--message--icon.pull-right{ href: "#0", alt: "Message"}
-                  %i.fa.fa-envelope-o
+          .col-xs-6.col-sm-6.col-md-4.post-collect
+            .post-gallery
+              .post-image
+                = image_tag(request.image.url, class: 'post-image')
+              %span.pull-left.post-price
+                $
+                %strong
+                  10
+              .col-md-12.row-title
+                %h5 #{request.title}
+              .row
+                .col-md-5.pull-left
+                  = gravatar_for(request.user.profile)
+                  %p.post-name #{request.user.profile.first_name}&nbsp;#{request.user.profile.last_name.slice(0,1).capitalize}.
+                .fa.fa-envelope-o.pull-right.post-list-tool.post-mail
 
       - else
         %p.text-muted There are no requests for this user

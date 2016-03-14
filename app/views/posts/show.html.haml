@@ -4,7 +4,7 @@
   .container.header--content
     .row
       .col-xs-12
-        %h1= @post.title
+        %h1= "I will teach you" << @post.title
       .col-xs-12
         - if @post.user == current_user
           = link_to "Edit", edit_post_path(@post), class: "btn btn-default"

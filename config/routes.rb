@@ -12,9 +12,13 @@ Rails.application.routes.draw do
   get '/how-it-works' => "static_pages#how_it_works"
   get '/add-new' => "static_pages#add_new"
   get '/browse' => "browse#index"
+  get '/browse/requests' => "browse#requests"
   get '/locations' => "browse#index"
   get '/location/:location' => "locations#index"
-
+  get '/posts' => "browse#index"
+  get '/requests' => "browse#requests"
+  get '/locations/:location_id/requests' => "browse#requests"
+  get '/categories/:category_id/requests' => "browse#requests"
   # Users
   resources :users do
     resources :profiles, only: [:edit, :update]
@@ -24,13 +28,13 @@ Rails.application.routes.draw do
   resources :categories, only: [:show] do
     resources :posts, only: [:index]
     resources :requests, only: [:index]
-    resources :browse, only: [:index]
+    resources :browse, only: [:index, :requests]
   end
 
   resources :locations, only: [:show] do
     resources :posts, only: [:index]
     resources :requests, only: [:index]
-    resources :browse, only: [:index]
+    resources :browse, only: [:index, :requests]
   end
   
   # Posts

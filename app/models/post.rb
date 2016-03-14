@@ -15,5 +15,6 @@ class Post < ActiveRecord::Base
   validates :experience, :presence => true, :length => { :minimum => 20}
   validates :years_experience, :presence => true, :numericality => { :greater_than_or_equal_to => 0 }
   validates :price, :presence => true, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :url, :format => {:with => URI.regexp}, if: Proc.new {|a| a.url.present?}
 
 end

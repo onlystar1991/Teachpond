@@ -31,7 +31,6 @@ class RequestsController < ApplicationController
     else
       @requests = Request.all
     end
-    
     @locations = Location.all
   end
 
@@ -44,25 +43,28 @@ class RequestsController < ApplicationController
 
   def create
 
+    data = Hash.new
+    data[:category_id] = request_params[:category_id]
+    data[:title] = request_params[:title]
+    data[:description] = request_params[:description]
+    data[:experience] = request_params[:experience]
+    
+    data[:years_experience] = request_params[:years_experience]
+    data[:price] = request_params[:price]
+
     if request_params[:location_id] == '7'
       if Location.exists?(:city => params[:location])
         location = Location.find_by(city: params[:location])
+        data[:location_id] = location.id
       else
         location = Location.new
         location.city = params[:location]
         location.normal = false
         location.save
+
+        _location = Location.find_by(city: params[:location])
+        data[:location_id] = _location.id
       end
-      
-      data = Hash.new
-      data[:category_id] = request_params[:category_id]
-      data[:title] = request_params[:title]
-      data[:description] = request_params[:description]
-      data[:experience] = request_params[:experience]
-      data[:location_id] = location.id
-      data[:years_experience] = request_params[:years_experience]
-      data[:price] = request_params[:price]
-      
       @request = current_user.requests.build(data)
     else
       @request = current_user.requests.build(request_params)
@@ -76,12 +78,35 @@ class RequestsController < ApplicationController
   end
 
   def edit
-    puts "-------"
-    puts @request.inspect
   end
 
   def update
-    if @request.update(request_params)
+    data = Hash.new
+    data[:category_id] = request_params[:category_id]
+    data[:title] = request_params[:title]
+    data[:description] = request_params[:description]
+    data[:experience] = request_params[:experience]
+    data[:years_experience] = request_params[:years_experience]
+    data[:price] = request_params[:price]
+
+    if request_params[:location_id] == '7'
+      if Location.exists?(:city => params[:location])
+        location = Location.find_by(city: params[:location])
+        data[:location_id] = location.id
+      else
+        location = Location.new
+        location.city = params[:location]
+        location.normal = false
+        location.save
+
+        _location = Location.find_by(city: params[:location])
+        data[:location_id] = _location.id
+      end
+    else
+      data[:location_id] = request_params[:location_id];
+    end
+
+    if @request.update(data)
       redirect_to @request
     else
       render 'edit'

@@ -3,13 +3,17 @@
     = f.label :category_id, label: "Select a Category for this Post"
     = f.input_field :category_id, as: :select, collection: Category.all, prompt: "Select category", required: true
     = f.error :category_id
-
-  = f.input :title, placeholder: 'I can teach'
+  %span.fixed-start-post-title
+    I will teach you
+  = f.input :title, placeholder: 'how to study English'
+  %span.check-validation
+    Can't be empty
+  %br
   = f.input :description, placeholder: 'Try to describe what you can do for students, minimum 20 characters'
   = f.input :experience, placeholder: 'Briefly describe your experience, minimum 20 characters'
   - if @post.location_id.nil?
     = f.input :location_id, as: :select, collection: @normal_locations.map{|location| [location.city, location.id]}, prompt: "Select Location", required: true
-  - else 
+  - else
     -if @post.location_id > 6
       = f.input :location_id, as: :select, collection: @normal_locations.map{|location| [location.city, location.id]}, prompt: "Select Location", required: true, selected: 7
     - else
@@ -21,6 +25,8 @@
   - else
     .form-group.string.optional.post_location
       %input#post_location.form-control{:name => 'location', :placeholder => "Please input city", :type => "text", :value => @post.location.city}
+      
+  = f.input :url, placeholder: 'Please input YouTube Url...'
 
   .clear
     .col-xs-6.no--padding--left

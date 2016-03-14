@@ -54,4 +54,20 @@ $(function() {
 	$('form').on('click', '.request_image_class img', function(e) {
 		$('#request_image').click();
 	})
+
+	$("#request_title").keyup(function(event) {
+		var validationObject = $(".check-validation");
+		var current_text = $("#request_title").val();
+		if (current_text.length > 54) {
+			$(".check-validation").css('color', "#fc4c78");
+			$(".check-validation").text("The length of title is limited by 70 charactors.");
+		} else if ($.trim(current_text).length < 1) {
+				$(".check-validation").css('color', "#fc4c78");
+			$(".check-validation").text("Can't be empty.");
+		} else {
+			$(".check-validation").css('color', "green");
+			$(".check-validation").text("perfect!");
+		}
+    })
+    $("#request_title").keyup();
 })

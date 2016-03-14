@@ -1,20 +1,23 @@
 .search_form {
-	max-width: 50%;
+	max-width: 100%;
 	h5 {
 		overflow: hidden;
 	    text-overflow: ellipsis;
-	    white-space: nowrap;		
+	    white-space: nowrap;
+	    color: black;
+	    padding-left: 5px;
 	}
 }
-
+.homepage .search_form h5{
+	color: white !important;
+}
 .left-menu {
 	background: white;
 	border-radius: 10px;
 	margin-top: 10px;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) inset;
 }
-
-.post-area {
+.area--section {
 	background: white;
 	margin-top: 10px;
 	border-radius: 10px;
@@ -23,8 +26,8 @@
 	width: 100%;
 }
 .post-image > img {
-	border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+	border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     float: left;
 }
 .post-padding {
@@ -34,14 +37,27 @@
 	color: #337ab7;
 }
 .post-gallery {
-	border-radius: 10px;
+	border-radius: 5px;
 	border: 1px solid #ccc;
 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(1, 1, 1, 0.6);
+	padding-bottom: 5px;
+	.gravatar {
+		width: 50px;
+		height: 50px;
+		border-radius: 5px;
+	}
+	.row {
+		display: inline-flex;
+		.pull-left{
+			display: inline-flex;
+		}
+	}
 }
-.post-gallery h5 {
+.post-gallery a {
 	font-weight: 600;
     margin-top: -2px;
-    max-height: 15px;
+    max-height: 20px;
+    min-width: 55px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -50,19 +66,24 @@
 	padding-top: 20px;
 	padding-left: 10px;
 	padding-right: 10px;
+	.gravatar {
+		width: 40px;
+		height: 40px;
+		border-radius: 5px;
+		display: inline-flex;
+	}
 }
 .row-reviews {
-	padding-top: 10px;
+	-padding-top: 10px;
 }
 .row-title {
 	border-bottom: 1px solid lightgray;
 	border-radius: 5px;
+	display: inline-flex;
+	width:100%;
+	padding-bottom: 2px;
 }
-.post-avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 5px;
-}
+
 .post-name {
 	margin-left: 50px;
     margin-top: -35px;
@@ -79,9 +100,17 @@
 }
 
 .post-add-tool {
-	color: magenta;
     margin-top: 20px;
 }
-.post-mail {
+
+.post-add-tool.post-favour {
+  	color: red;
+}
+.post-add-tool.post-forward {
+  	color: green;
+}
+
+.post-add-tool.post-mail {
 	margin-right: 15px;
+	color : blue;
 }

@@ -16,68 +16,53 @@
 
 %body{:class => @home_page ? 'homepage' : '', :id => !user_signed_in? ? "not-sign-in" : "temp"}
   %nav.navbar.navbar-default.navbar-static-top
-    .container
-      .navbar-header.half-size
-        %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#main-menu-1", "data-toggle" => "collapse", :type => "button"}
-          %span.sr-only Toggle navigation
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        = link_to (root_path), class: "pull-left nav-brand" do
-          = image_tag("logo.png", class: "navbar--logo")
-        .pull-left.search_form
-          %form{:action => "/browse"}
-            %h5 Develop yourself with teachers, tutors, coaches and mentors around the world.
-            .top-search-div
-              %input{:type => "text", :name => "searchKey", :class => "form-control"}
-              %button{:class => "btn top-search-button pull-right"}
-                %i{:class => 'fa fa-search'}
+    .navbar-header.half-size
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#main-menu-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to (root_path), class: "pull-left nav-brand" do
+        = image_tag("logo.png", class: "navbar--logo")
+      .pull-left.search_form
+        %form{:action => "/browse"}
+          %h5 Improve anything
+          .top-search-div
+            %input{:type => "text", :name => "search", :class => "form-control", :placeholder => "Search Teachpond"}
+            %button{:class => "btn top-search-button pull-left"}
+              %i{:class => 'fa fa-search'}
 
-      #main-menu-1.collapse.navbar-collapse.half-size.pull-right
-        - if user_signed_in?
-          %ul.nav.navbar-nav.navbar-right
-            %li
-              = link_to(new_post_path) do
-                %button{:class => "btn pull-right"}
-                  %i{:class => "fa fa-2x fa-plus-square-o"}
-            %li
-              = link_to (browse_path) do
-                %button{:class => "btn pull-right"}
-                  %i{:class => "fa fa-2x fa-home"}
-            %li
-              = link_to ("#") do
-                %button{:class => "btn pull-right"}
-                  %i{:class => "fa fa-2x fa-globe"}
-            %li.dropdown
-              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                %button{:class => "btn"}
-                  %i{:class => "fa fa-2x fa-user"}
-                %span.caret
-              %ul.dropdown-menu
-                %li= link_to "My Profile", current_user
-                %li= link_to "Edit Profile", edit_user_profile_path(current_user.id, current_user.profile.id)
-                / %li= link_to "Account", edit_user_registration_path
-                %li= link_to "Setting", "#"
-                %li.divider{role: "separator"}
-                %li= link_to "Sign Out", destroy_user_session_path, method: :delete
-
-        - else
-          %ul.nav.navbar-nav.navbar-right
-            = link_to (new_user_session_path) do
+    #main-menu-1.collapse.navbar-collapse.half-size.pull-right
+      - if user_signed_in?
+        %ul.nav.navbar-nav.navbar-right
+          %li
+            = link_to(add_new_path) do
               %button{:class => "btn pull-right"}
-                %i{:class => "fa fa-2x fa-sign-in"}
-            = link_to (new_post_path) do
-              %button{:class => "btn pull-right"}
-                %i{:class => "fa fa-2x fa-user"}
+                %i{:class => "fa fa-2x fa-plus-square-o"}
+          %li
             = link_to (browse_path) do
               %button{:class => "btn pull-right"}
-                %i{:class => "fa fa-2x fa-globe"}
+                %i{:class => "fa fa-2x fa-home"}
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              %button{:class => "btn"}
+                %i{:class => "fa fa-2x fa-user"}
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to "My Profile", current_user
+              %li= link_to "Edit Profile", edit_user_profile_path(current_user.id, current_user.profile.id)
+              / %li= link_to "Account", edit_user_registration_path
+              %li= link_to "Setting", edit_user_registration_path
+              %li.divider{role: "separator"}
+              %li= link_to "Sign Out", destroy_user_session_path, method: :delete
+
+      - else
+        %ul.nav.navbar-nav.navbar-right
+          %li= link_to "Browse", browse_path
+          %li= link_to "Sign in", new_user_session_path
+          %li= link_to "Sign Up", new_user_registration_path
   - if !flash.nil?
     .container.home-padding
-      - flash.each do |name, msg|
-        = content_tag :div, msg, class: "alert alert-info"
-  - else
-    .container
       - flash.each do |name, msg|
         = content_tag :div, msg, class: "alert alert-info"
 

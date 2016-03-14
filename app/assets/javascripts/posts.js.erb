@@ -49,13 +49,25 @@ $(function() {
 			location.push(gon.additional_locations[object].city)
 		}
 	}
-
 	$("#post_location").autocomplete({
-      source: location
+		source: location
     });
-
-
     $("#additional_cities").autocomplete({
       source: location
     });
+    $("#post_title").keyup(function(event) {
+		var validationObject = $(".check-validation");
+		var current_text = $("#post_title").val();
+		if (current_text.length > 59) {
+			$(".check-validation").css('color', "#fc4c78");
+			$(".check-validation").text("The length of title is limited by 70 charactors.");
+		} else if ($.trim(current_text).length < 1) {
+				$(".check-validation").css('color', "#fc4c78");
+			$(".check-validation").text("Can't be empty.");
+		} else {
+			$(".check-validation").css('color', "green");
+			$(".check-validation").text("perfect!");
+		}
+    })
+    $("#post_title").keyup();
 })

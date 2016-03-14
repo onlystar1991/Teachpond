@@ -12,6 +12,7 @@ Category.create(title: "Sport")
 Category.create(title: "Language")
 Category.create(title: "Career")
 Category.create(title: "Odd job")
+Category.create(title: "Urgent")
 Category.create(title: "Other")
 
 Location.create(city: "London", normal: true)

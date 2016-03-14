@@ -7,7 +7,7 @@ module UsersHelper
 	    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
 	    image_tag(gravatar_url, class: "gravatar")
 	else
-    	image_tag(profile.avatar.url, alt: profile.first_name, class: 'gravatar')
+    	image_tag(profile.avatar.url, alt: profile.first_name, class: 'gravatar', title: "Click here to change avatar.")
     end
   end
 end

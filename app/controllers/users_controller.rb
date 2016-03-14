@@ -10,12 +10,10 @@ class UsersController < ApplicationController
     @country = @profile.country ? @profile.country : ''
     @posts = @user.posts ? @user.posts : ''
     @requests = @user.requests ? @user.requests : ''
-
     @active_tab = 0
   end
 
   private
-
     def find_user
       @user = User.find(params[:id])
     end

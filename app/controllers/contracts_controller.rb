@@ -15,7 +15,7 @@ class ContractsController < ApplicationController
 			}
 		end
 	end
-
+	
 	def give_feedback
 		contract = Contract.find(params[:contract_id])
 		if contract.status == 0
@@ -26,5 +26,4 @@ class ContractsController < ApplicationController
 			contract.update(rate: params[:rate])
 		end
 	end
-
 end

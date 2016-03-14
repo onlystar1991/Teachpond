@@ -4,28 +4,20 @@
 .header--section {
   text-align: center;
   position: relative;
-  color: $text-color-light;
   h1 {
     font-family: $secondary-font-stack;
     font-size: 4rem;
+    color: black;
   }
 }
 
 .hero--content,
 .header--content {
   position: relative;
-  padding-top: 5rem;
 }
 
 .hero--content {
   z-index: 5;
-}
-
-
-// Hero section for other pages
-
-.header--section  {
-  background: $dark-background;
 }
 
 .half-size {
@@ -39,5 +31,5 @@
 }
 
 .home-padding {
-  padding-top: 72px;
+  padding-top: 100px;
 }

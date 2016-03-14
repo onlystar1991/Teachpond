@@ -1,14 +1,22 @@
 .footer--section {
-  background: $dark-background;
-  height: 25rem;
+  background: #eeeeee;
+  height: 27rem;
   text-align: center;
+  padding-top: 30px;
 }
-
-.footer--content {
-
+.footer--content ul li > a {
+  color: black;
 }
-
+.homepage {
+	.copyright {
+	  color: $color-light;
+	  font-size: 1.25rem;
+	}
+  .footer--content ul li > a {
+    color: white;
+  }
+}
 .copyright {
-  color: $color-light;
+  color: black;
   font-size: 1.25rem;
 }

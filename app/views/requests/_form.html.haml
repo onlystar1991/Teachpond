@@ -3,7 +3,13 @@
     = f.label :category_id, label: "Select a Category for this Post"
     = f.input_field :category_id, as: :select, collection: Category.all, prompt: "Select category", required: true
   = f.error :category_id
-  = f.input :title, placeholder: 'I want to learn...'
+
+  %span.fixed-start-post-title
+    I want to learn
+  = f.input :title, placeholder: 'how to study English '
+  %span.check-validation
+    Can't be empty
+  %br
   = f.input :description, placeholder: 'Give a brief description of your expectations and what you are looking for...'
   = f.input :price, label: "Prefered price per hour"
   - if @request.location_id.nil?
@@ -20,6 +26,8 @@
   - else
     .form-group.string.optional.request_location
       %input#request_location.form-control{:name => 'location', :placeholder => "Please input city", :type => "text", :value => @request.location.city}
+  
+  = f.input :url, placeholder: 'Please input YouTube Url...'
   .request_image_class
     = image_tag(@request.image.url, title: 'Click here to change post image.')
   = f.file_field :image
