@@ -21,10 +21,14 @@ test:
   database: db/test.sqlite3
 
 production:
-  database: teachpond_product_database
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
-  host: localhost
-  user_name: teachpond
-  url: <%= ENV['DATABASE_URL'] %>
+  <<: *default
+  database: db/production.sqlite3
+
+#production:
+#  database: teachpond_product_database
+#  adapter: postgresql
+#  encoding: unicode
+#  pool: 5
+#  host: localhost
+#  user_name: teachpond
+#  url: <%= ENV['DATABASE_URL'] %>
