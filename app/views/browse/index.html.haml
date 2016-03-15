@@ -70,7 +70,8 @@
               .row
                 .col-md-5.pull-left
                   = gravatar_for(post.user.profile)
-                  %p.post-name #{post.user.profile.first_name}&nbsp;#{post.user.profile.last_name.slice(0,1).capitalize}.
+                  - user_name = post.user.profile.first_name << " " <<  post.user.profile.last_name.slice(0,1).capitalize << "."
+                  = link_to user_name, user_path(post.user)
                 .col-md-7.pull-right
                   .fa.fa-envelope-o.pull-right.post-add-tool.post-mail
                   .fa.fa-angle-double-right.pull-right.post-add-tool.post-forward
